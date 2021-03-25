@@ -29,3 +29,13 @@ app.listen(port, () => {
 app.get("/getProjectData", (req, res) => {
   res.send(JSON.stringify(projectData));
 });
+app.post("/postProjectData", (req, res) => {
+  const data = req.body;
+  const newData = {
+    temperature: data.temp,
+    date: data.temp,
+    userResponse: data.userResponse,
+  };
+  Object.assign(projectData, newData);
+  res.send(projectData);
+});
