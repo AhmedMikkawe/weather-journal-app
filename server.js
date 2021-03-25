@@ -30,12 +30,16 @@ app.get("/getProjectData", (req, res) => {
   res.send(JSON.stringify(projectData));
 });
 app.post("/postProjectData", (req, res) => {
+  // catch the request body and save it in the data variable
   const data = req.body;
+  // create a newData object
   const newData = {
+    // all properties takes values from the data variable (request body)
     temperature: data.temp,
-    date: data.temp,
+    date: data.date,
     userResponse: data.userResponse,
   };
+  // copies all projectData object properties to a newData object
   Object.assign(projectData, newData);
   res.send(projectData);
 });
