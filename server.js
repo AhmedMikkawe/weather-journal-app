@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.static("website"));
 
 // Setup Server
-const port = 80;
+const port = 8000;
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
 });
@@ -28,18 +28,19 @@ app.listen(port, () => {
 // routes
 app.get("/getProjectData", (req, res) => {
   res.send(JSON.stringify(projectData));
+  projectData = {};
 });
 app.post("/postProjectData", (req, res) => {
   // catch the request body and save it in the data variable
   const data = req.body;
+  console.log(data);
   // create a newData object
   const newData = {
     // all properties takes values from the data variable (request body)
-    temperature: data.temp,
+    temp: data.temp,
     date: data.date,
     userResponse: data.userResponse,
   };
   // copies all projectData object properties to a newData object
   Object.assign(projectData, newData);
-  res.send(projectData);
 });
